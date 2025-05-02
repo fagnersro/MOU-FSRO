@@ -1,24 +1,34 @@
 import { windowWidth } from "@/app/assets/utils/dimensions";
-import { Pressable, View, Text, StyleSheet } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { Link } from "expo-router";
+import React from "react";
+import { Pressable, View, Text, StyleSheet, Image } from "react-native";
 
 type Props = {
     label: string;
-    theme?: 'primary';
+    theme?: 'primary' | 'configTheme';
+    onPress?: () => void;
 };
 
-export default function Button({ label, theme }: Props) {
+export default function Button({ label, theme, onPress}: Props) {
   if (theme === 'primary') {
     return (
-      <View style={styles.button}>
-        <Pressable
-          onPress={() => alert('You pressed a button.')}
-        >
-          <Text style={styles.text}>{label}</Text>
-        </Pressable>
+      <View style={styles.buttonPrimary}>
+          <Link href={'/home'} style={styles.text}>
+            <Text style={styles.text}>{label}</Text>
+          </Link>
       </View>
     );
-  }
+  } 
 
+  if (theme === 'configTheme') {
+    return (      
+    <View style={stylesConfigTheme.container}>
+        <AntDesign name="setting" style={stylesConfigTheme.icon} />
+    </View>
+    )
+  }
+  
   return (
     <View>
       <Pressable>
@@ -30,7 +40,7 @@ export default function Button({ label, theme }: Props) {
 }
 
 const styles = StyleSheet.create({
-  button: {
+  buttonPrimary: {
     backgroundColor: 'green',
     borderRadius: 20,
     borderColor: '#fff',
@@ -44,5 +54,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     fontSize: 20,
+  },
+})
+
+const stylesConfigTheme = StyleSheet.create({
+  container: {
+    borderWidth: 3,
+    borderRadius: 100,
+    borderColor: '#fff'
+  },
+  icon: {
+    fontSize: 40,
+    color: '#fff',
   }
 })
