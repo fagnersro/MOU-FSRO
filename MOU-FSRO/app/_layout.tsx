@@ -1,11 +1,13 @@
-import ThemeSetting from "@/components/ThemeSetting";
 import { Stack } from "expo-router";
+import { HeaderConfigurationProvider } from "./contexts/HeaderConfigurationContext";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name='index' options={{ headerShown: false }}/>
-      <Stack.Screen name='home' options={{ headerShown: false}} />
-    </Stack>
+    <HeaderConfigurationProvider>
+      <Stack>
+          <Stack.Screen name='index' options={{ headerShown: false }}/>
+          <Stack.Screen name='home' options={{ headerShown: false}} />
+      </Stack>
+    </HeaderConfigurationProvider>
   );
 }
