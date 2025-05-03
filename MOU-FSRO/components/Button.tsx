@@ -1,12 +1,11 @@
 import { windowWidth } from "@/app/assets/utils/dimensions";
-import { AntDesign } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import React from "react";
 import { Pressable, View, Text, StyleSheet, Image } from "react-native";
 
 type Props = {
     label: string;
-    theme?: 'primary' | 'configTheme';
+    theme?: 'primary' | 'quiz';
     onPress?: () => void;
 };
 
@@ -21,11 +20,13 @@ export default function Button({ label, theme, onPress}: Props) {
     );
   } 
 
-  if (theme === 'configTheme') {
-    return (      
-    <View style={stylesConfigTheme.container}>
-        <AntDesign name="setting" style={stylesConfigTheme.icon} />
-    </View>
+  if (theme === 'quiz') {
+    return (
+    <Pressable onPress={() => alert('Quiz precisa ser programado!!')}>      
+      <View style={stylesQuiz.container}>
+          <Text style={stylesQuiz.text}>Teste seus Conhecimentos</Text>
+      </View>
+    </Pressable>
     )
   }
   
@@ -51,20 +52,30 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#fff'   ,
     textAlign: 'center',
     fontSize: 20,
   },
 })
 
-const stylesConfigTheme = StyleSheet.create({
+const stylesQuiz = StyleSheet.create({
   container: {
-    borderWidth: 3,
-    borderRadius: 100,
-    borderColor: '#fff'
+   backgroundColor: 'yellow',
+   borderRadius: 15,
+   padding: 5,
+   height: 60,
+   width: 400,
+   justifyContent: 'center',
+   margin: 'auto',
+   marginTop: 50,
   },
   icon: {
     fontSize: 40,
     color: '#fff',
-  }
+  },
+  text: {
+    color: '#000000',
+    textAlign: 'center',
+    fontSize: 17,
+  },
 })

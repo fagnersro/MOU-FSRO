@@ -1,15 +1,31 @@
-import { View, StyleSheet, ImageBackground } from "react-native";
+import {Image, View, StyleSheet, ImageBackground } from "react-native";
 import { useContext } from "react";
 import HeaderConfigurationContext from "./contexts/HeaderConfigurationContext";
 import HeaderConfiguration from "@/components/HeaderConfiguration";
+import ShowMovie from "@/components/ShowMovie";
+import Button from "@/components/Button";
+import { windowHeight, windowWidth } from "./assets/utils/dimensions";
+
 
 export default function Home() {
-  const { imageBackroud } = useContext(HeaderConfigurationContext)
+  const { imageBackroud, imageLogo } = useContext(HeaderConfigurationContext)
   
   return (
     <ImageBackground source={imageBackroud} resizeMode="cover" height={100}>
       <View style={styles.container}>
-        <HeaderConfiguration />      
+        <HeaderConfiguration />
+        
+        <View style={styles.containerImage}>
+          <Image source={imageLogo} style={styles.logoImage}/>    
+        </View>
+
+        <View>
+          <ShowMovie type="GOD" />
+        </View>
+
+        <View>
+          <Button label="Teste seus Conhecimentos" theme="quiz"/>
+        </View>
       </View>
     </ImageBackground>
   )
@@ -17,10 +33,19 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-   width: '100%',
-   height: '100%'
+    flexDirection: 'column',
+    width: windowWidth,
+    height: windowHeight,
   },
-  settingThem: {
-  }
+  containerImage: {
+    alignItems: 'center',
+    width: '100%',
+    height: 'auto',
+    marginTop: 1,
+  },
+  logoImage: {
+    width: 250,
+    height: 250
+  },
 })
 

@@ -3,6 +3,8 @@ import { AntDesign } from "@expo/vector-icons"
 import { View, Text, Pressable, StyleSheet, ImageSourcePropType } from "react-native"
 import { Image } from "react-native" 
 
+import HeaderConfigurationContext from "@/app/contexts/HeaderConfigurationContext"
+
 import bgBrasil from '../app/assets/images/bgBrasil.png'
 import bgExercito from '../app/assets/images/bgExercito.png'
 import bgAero from '../app/assets/images/bgAero.png'
@@ -12,8 +14,12 @@ import iconExercito from '../app/assets/images/icoExercito.png'
 import iconAero from '../app/assets/images/icoAero.png'
 import iconBombeiros from '../app/assets/images/icoBombeiros.png'
 import icoMarinha from '../app/assets/images/icoMarinha.png'
-import HeaderConfigurationContext from "@/app/contexts/HeaderConfigurationContext"
 
+//import logoBco from '../app/assets/images/logoBco.png'
+import logoExercito from '../app/assets/images/logoExercito.png'
+import logoAero from '../app/assets/images/logoAero.png'
+import logoBombeiros from '../app/assets/images/logoBombeiros.png'
+import logoMarinha from '../app/assets/images/logoMarinha.png'
 
 type iconAreaDataType = {
   id: number;
@@ -21,6 +27,7 @@ type iconAreaDataType = {
   bgImage: ImageSourcePropType;
   text: string;
   title: string;
+  logoImage: ImageSourcePropType;
 }[]
 
 const iconAreaData: iconAreaDataType = [
@@ -29,41 +36,55 @@ const iconAreaData: iconAreaDataType = [
     urlIcon: bgBrasil,
     bgImage: bgBrasil,
     text: 'Brasil',
-    title: 'Brasil'  
+    title: 'Brasil',
+    logoImage: logoExercito,
   },
   {
     id: 2,
     urlIcon: iconExercito,
     bgImage: bgExercito,
     text: 'Orgulho em fazer parte do Éxercito',
-    title: 'Exercito'
+    title: 'Exercito',
+    logoImage: logoExercito,
   },
   {
     id: 3,
     urlIcon: icoMarinha,
     bgImage: icoMarinha,
     text: 'Orgulho em fazer parte da Marinha',
-    title: 'Marinha'
+    title: 'Marinha',
+    logoImage: logoMarinha,
   },
   {
     id: 4,
     urlIcon: iconAero,
     bgImage: bgAero,
     text: 'Orgulho em fazer parte da Aeronáutica',
-    title: 'Aeronáutica'
+    title: 'Aeronáutica',
+    logoImage: logoAero
   },
   {
     id: 5,
     urlIcon: iconBombeiros,
     bgImage: bgBombeiros,
     text: 'Orgulho em fazer parte dos Bombeiros',
-    title: 'Bombeiros'
+    title: 'Bombeiros',
+    logoImage: logoBombeiros
   },
 ]
 
 export default function HeaderConfiguration() {
 
-    const { modalSettingOpen, showSettingsModal, ApplyBackgroudImage, text, ApplyText, headerTitle, ApplyHeaderTitle} = useContext(HeaderConfigurationContext);
+    const { 
+      modalSettingOpen, 
+      showSettingsModal, 
+      ApplyBackgroudImage, 
+      text, 
+      ApplyText, 
+      headerTitle, 
+      ApplyHeaderTitle, 
+      ApplyImageLogo
+    } = useContext(HeaderConfigurationContext);
 
     return (
       <>
@@ -87,6 +108,7 @@ export default function HeaderConfiguration() {
                     ApplyBackgroudImage(dataIcon.bgImage), 
                     ApplyText(dataIcon.text),
                     ApplyHeaderTitle(dataIcon.title)
+                    ApplyImageLogo(dataIcon.logoImage)
                   }} 
                   >
                   <Image 
