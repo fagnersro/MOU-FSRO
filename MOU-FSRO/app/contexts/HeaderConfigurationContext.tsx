@@ -1,8 +1,8 @@
 import React, { createContext, ReactNode, useState } from 'react';
 import { ImageSourcePropType } from 'react-native';
 
-import bgBrasil from '../assets/images/bgBrasil.png'
-import logoExercito from '../assets/images/logoExercito.png'
+import bgBrasil from '@/assets/images/bgBrasil.png'
+import logoExercito from '@/assets/images/logoExercito.png'
 
 type HeaderConfigurationContextType = {
  modalSettingOpen: Boolean;

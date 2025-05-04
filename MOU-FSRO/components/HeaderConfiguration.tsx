@@ -5,25 +5,26 @@ import { Image } from "react-native"
 
 import HeaderConfigurationContext from "@/app/contexts/HeaderConfigurationContext"
 
-import bgBrasil from '../app/assets/images/bgBrasil.png'
-import bgExercito from '../app/assets/images/bgExercito.png'
-import bgAero from '../app/assets/images/bgAero.png'
-import bgBombeiros from '../app/assets/images/bgBombeiros.png'
+import bgBrasil from '@/assets/images/bgBrasil.png'
+import bgExercito from '@/assets/images/bgExercito.png'
+import bgAero from '@/assets/images/bgAero.png'
+import bgBombeiros from '@/assets/images/bgBombeiros.png'
 
-import iconExercito from '../app/assets/images/icoExercito.png'
-import iconAero from '../app/assets/images/icoAero.png'
-import iconBombeiros from '../app/assets/images/icoBombeiros.png'
-import icoMarinha from '../app/assets/images/icoMarinha.png'
+import iconExercito from '@/assets/images/icoExercito.png'
+import iconAero from '@/assets/images/icoAero.png'
+import iconBombeiros from '@/assets/images/icoBombeiros.png'
+import icoMarinha from '@/assets/images/icoMarinha.png'
 
-//import logoBco from '../app/assets/images/logoBco.png'
-import logoExercito from '../app/assets/images/logoExercito.png'
-import logoAero from '../app/assets/images/logoAero.png'
-import logoBombeiros from '../app/assets/images/logoBombeiros.png'
-import logoMarinha from '../app/assets/images/logoMarinha.png'
+//import logoBco from '@/assets/images/logoBco.png'
+import logoExercito from '@/assets/images/logoExercito.png'
+import logoAero from '@/assets/images/logoAero.png'
+import logoBombeiros from '@/assets/images/logoBombeiros.png'
+import logoMarinha from '@/assets/images/logoMarinha.png'
+import React from "react"
 
 type iconAreaDataType = {
-  id: number;
   urlIcon: number;
+  id: number;
   bgImage: ImageSourcePropType;
   text: string;
   title: string;

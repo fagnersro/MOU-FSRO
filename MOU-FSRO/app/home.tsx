@@ -4,7 +4,7 @@ import HeaderConfigurationContext from "./contexts/HeaderConfigurationContext";
 import HeaderConfiguration from "@/components/HeaderConfiguration";
 import ShowMovie from "@/components/ShowMovie";
 import Button from "@/components/Button";
-import { windowHeight, windowWidth } from "./assets/utils/dimensions";
+import { windowHeight, windowWidth } from "../assets/utils/dimensions";
 
 
 export default function Home() {

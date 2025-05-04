@@ -1,4 +1,4 @@
-import { windowWidth } from "@/app/assets/utils/dimensions";
+import { windowWidth } from "@/assets/utils/dimensions";
 import { Link } from "expo-router";
 import React from "react";
 import { Pressable, View, Text, StyleSheet, Image } from "react-native";

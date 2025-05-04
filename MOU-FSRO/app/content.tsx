@@ -1,4 +1,5 @@
-import Button from "@/components/Button";
+import React from "react";
+
 import { Image, ImageBackground, Pressable, StyleSheet, View } from "react-native";
 
 import bgBrasil from '@/assets/images/bgBrasil.png'
@@ -7,7 +8,7 @@ import icoExercito from '@/assets/images/icoExercito.png'
 import icoAero from '@/assets/images/icoAero.png'
 import icoMarinha from '@/assets/images/icoMarinha.png'
 import icoBombeiros from '@/assets/images/icoBombeiros.png'
-import { windowHeight, windowWidth } from "./assets/utils/dimensions";
+import { windowHeight, windowWidth } from "../assets/utils/dimensions";
 
 
 type sourceDataButtonTypes = {

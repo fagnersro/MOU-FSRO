@@ -1,9 +1,10 @@
-import {Text, ScrollView, StyleSheet, View, Pressable, Image, ImageSourcePropType, Modal, Alert } from "react-native";
+import {Text, ScrollView, StyleSheet, View, Pressable, Image, ImageSourcePropType, Modal } from "react-native";
 
-import IMG_0086 from '../app/assets/images/png/IMG_0086.png'
+import IMG_0086 from '@/assets/images/png/IMG_0086.png'
 import { useState } from "react";
-import { windowHeight, windowWidth } from "@/app/assets/utils/dimensions";
+import { windowHeight, windowWidth } from "@/assets/utils/dimensions";
 import { AntDesign } from "@expo/vector-icons";
+import React from "react";
 
 type ShowMovieType = {
   type: string;
