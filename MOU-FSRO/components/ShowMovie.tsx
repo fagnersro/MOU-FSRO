@@ -5,6 +5,7 @@ import { useState } from "react";
 import { windowHeight, windowWidth } from "@/assets/utils/dimensions";
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
+import PlayVideo from "./PlayVideo";
 
 type ShowMovieType = {
   type: string;
@@ -46,6 +47,10 @@ const blockAmount: blockAmountType = [
   },
 ]
 
+const videoSource = 'https://firebasestorage.googleapis.com/v0/b/movimentos-de-ordem-unida.appspot.com/o/IMG_0088.mp4?alt=media&token=c23c00fd-1cb6-4957-b26f-fac28b6527ed'
+
+
+
 export default function ShowMovie({type}: ShowMovieType) {
 
   const [showMovie, setShowMovie] = useState<boolean>(false)
@@ -53,7 +58,7 @@ export default function ShowMovie({type}: ShowMovieType) {
   return (
       <>
         <Modal 
-          animationType="slide"
+          animationType="slide" 
           transparent={true}
           visible={showMovie}
           onRequestClose={() => {
@@ -67,7 +72,8 @@ export default function ShowMovie({type}: ShowMovieType) {
               </Pressable>
 
               <View style={containerPlayMovie.contentMovie} >
-                <Image source={IMG_0086} style={containerPlayMovie.containerPlayMovie}/>
+                {/*<Image source={IMG_0086} style={containerPlayMovie.containerPlayMovie}/>*/}
+                <PlayVideo videoSource={videoSource} />
               </View>
 
               <View style={containerPlayMovie.contentText}>
@@ -165,6 +171,11 @@ const containerPlayMovie = StyleSheet.create({
     height: 80,
   },
   contentMovie: {
+    borderWidth: 2,
+    borderColor: '#fff',
+
+    width: windowWidth,
+    height: windowHeight,
     overflow: 'hidden',
     margin: 'auto',
   },
