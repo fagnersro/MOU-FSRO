@@ -5,6 +5,7 @@ import logoBco from '@/assets/images/logoBco.png'
 
 import { windowWidth, windowHeight } from '@/assets/utils/dimensions'
 import Button from "@/components/Button";
+import React from "react";
 
 export default function Index() {
   return (

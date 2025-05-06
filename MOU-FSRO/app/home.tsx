@@ -1,3 +1,4 @@
+import React from "react";
 import {Image, View, StyleSheet, ImageBackground } from "react-native";
 import { useContext } from "react";
 import HeaderConfigurationContext from "./contexts/HeaderConfigurationContext";

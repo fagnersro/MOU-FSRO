@@ -47,8 +47,8 @@ const blockAmount: blockAmountType = [
   },
 ]
 
-const videoSource = 'https://firebasestorage.googleapis.com/v0/b/movimentos-de-ordem-unida.appspot.com/o/IMG_0088.mp4?alt=media&token=c23c00fd-1cb6-4957-b26f-fac28b6527ed'
-
+const videoSource = require('@/assets/movie/IMG_0086.mp4')
+//const videoSource = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
 
 
 export default function ShowMovie({type}: ShowMovieType) {
@@ -155,6 +155,11 @@ const containerPlayMovie = StyleSheet.create({
   wrapperContent: {
     //borderWidth: 2,
     //borderColor: '#fff',
+
+    flexDirection: 'column',
+    alignContent: 'center',
+    justifyContent: 'space-between',
+
     
     padding: 20,
     width: windowWidth,
@@ -171,13 +176,12 @@ const containerPlayMovie = StyleSheet.create({
     height: 80,
   },
   contentMovie: {
-    borderWidth: 2,
-    borderColor: '#fff',
+    //borderWidth: 2,
+    //borderColor: 'red',
 
-    width: windowWidth,
-    height: windowHeight,
-    overflow: 'hidden',
-    margin: 'auto',
+    height: 550,
+    //overflow: 'hidden',
+    //margin: 'auto',
   },
   containerPlayMovie: {
     width: 300,
