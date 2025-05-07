@@ -71,9 +71,8 @@ export default function ShowMovie({type}: ShowMovieType) {
                 <Text style={containerPlayMovie.text}>Voltar</Text>
               </Pressable>
 
-              <View style={containerPlayMovie.contentMovie} >
-                {/*<Image source={IMG_0086} style={containerPlayMovie.containerPlayMovie}/>*/}
-                <PlayVideo videoSource={videoSource} />
+              <View style={containerPlayMovie.contentMovie}>
+                <PlayVideo videoSource={videoSource}/>
               </View>
 
               <View style={containerPlayMovie.contentText}>

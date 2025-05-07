@@ -47,7 +47,7 @@ export function HeaderConfigurationProvider ({children}: HeaderConfigurationProv
     setText(text)
   }
 
-  function ApplyHeaderTitle(title: string) {
+  function ApplyHeaderTitle(title: string):void {
     setHeaderTitle(title)
   }
 
