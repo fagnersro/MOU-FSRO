@@ -69,6 +69,9 @@ export default function Quiz() {
                         transparent={true}
                       >
                         <View style={styles.alertModalContainer}>
+                          <View style={styles.alertModalContainerIcon}>
+                            COR
+                          </View>
                           <Text style={styles.alertModalContainerTextTitle}>Resposta Correta:</Text>
                           <Text style={styles.alertModalContainerText}>{questions[currentQuestionIndex].alertModalCorrect}</Text>
                         </View>
@@ -144,6 +147,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 40,
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: 30,
     width: 400,
     height: 300,
     margin: 'auto',
@@ -157,6 +162,18 @@ const styles = StyleSheet.create({
   alertModalContainerTextTitle: {
     fontSize: 30,
     color: 'black',
+    textAlign: 'center',
+  },
+  alertModalContainerIcon: {
+    borderRadius: 100,
+    backgroundColor: 'green',
+    width: 100,
+    height: 100,
+
+    marginTop: -200,
+    zIndex: 200,
+    
+    justifyContent: 'center',
     textAlign: 'center',
   },
   question: {
