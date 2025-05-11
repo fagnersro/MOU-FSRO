@@ -4,19 +4,24 @@ import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Pressable, Moda
 
 import { questions } from '@/assets/utils/questions';
 import QuizConfigurationContext from '@/app/contexts/QuizConfigurationContext';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function Quiz() {
 
   const { 
-    setShowQuizFunction, 
-    handleOptionPress, 
-    restartQuiz, 
-    currentQuestionIndex, 
-    selectedOptionIndex, 
-    score, 
-    showResult 
+    setShowQuizFunction,
+    restartQuiz,
+    currentQuestionIndex,
+    selectedOptionIndex,
+    score,
+    showResult,
+    handleAnswer,
+    isModalVisible,
+    wasCorrect,
   } = useContext(QuizConfigurationContext)
 
+
+  const correctText = questions[currentQuestionIndex].alertModalCorrect;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -24,13 +29,19 @@ export default function Quiz() {
         <View style={styles.wrapper}>
 
       <View>
-        <Text style={styles.headerStatusText1}>{currentQuestionIndex+1} de 10</Text>
+        <View>
+          <Pressable>
+            <AntDesign />
+          </Pressable>
+          <Text style={styles.headerStatusText1}>{currentQuestionIndex+1} de 10</Text>
+        </View>
         <Text style={styles.headerStatusText2}>{score} certas até agora</Text>
       </View>
 
           <Text style={styles.question}>
             {questions[currentQuestionIndex].question}
           </Text>
+        
           <View>
             {questions[currentQuestionIndex].options.map((option, index) => {
               const isSelected = index === selectedOptionIndex;
@@ -44,62 +55,41 @@ export default function Quiz() {
                     : 'white'
                   : 'white';
 
-              const alertModal = 
-                selectedOptionIndex !== null
-                  ? isSelected 
-                    ? isCorrect
-                      ? 'acertou'
-                      : 'errou'
-                    : null
-                  : null;
-  
               return (
                 <TouchableOpacity
                   key={index}
                   style={[styles.optionButton, { backgroundColor }]}
-                  onPress={() => handleOptionPress(index)}
+                  onPress={() => handleAnswer(index)}
                   disabled={selectedOptionIndex !== null}
                 >
-                  <Text style={styles.optionText}>{option}</Text>
-                  
-                  {alertModal === 'acertou' ?
-                      <Modal
-                        animationType='slide'
-                        visible={alertModal === 'acertou'}
-                        transparent={true}
-                      >
-                        <View style={styles.alertModalContainer}>
-                          <View style={styles.alertModalContainerIcon}>
-                            COR
-                          </View>
-                          <Text style={styles.alertModalContainerTextTitle}>Resposta Correta:</Text>
-                          <Text style={styles.alertModalContainerText}>{questions[currentQuestionIndex].alertModalCorrect}</Text>
-                        </View>
-                      </Modal>
-                      :
-                      <Modal
-                        animationType='slide'
-                        visible={alertModal === 'errou'}
-                        transparent={true}
-                      >
-                      <View style={styles.alertModalContainer}>
-                        <Text style={styles.alertModalContainerText}>{questions[currentQuestionIndex].alertModalIncorrect}</Text>
-                      </View>
-                    </Modal>
-                    }  
+                  <Text style={styles.optionText}>{option}</Text>          
                 </TouchableOpacity>
               );
             })}
           </View>
-        </View>
+
+          <Modal animationType="slide" transparent={true} visible={isModalVisible}>
+            <View style={styles.modalOverlay}>
+              <View style={styles.alertModalContainer}>
+                <View style={wasCorrect ? styles.alertModalContainerIconCorrect : styles.alertModalContainerIconIncorrect}>
+                  <AntDesign name={wasCorrect ? 'check' : 'exclamation'} style={styles.icon} />
+                </View>
+                <Text style={styles.alertModalContainerTextTitle}>
+                  {wasCorrect ? 'Resposta Correta:' : 'Resposta Errada:'}
+                </Text>
+                <Text style={styles.alertModalContainerText}>{correctText}</Text>
+              </View>
+            </View>
+          </Modal>
+        </View>        
       ) : (
         <View style={styles.resultContainer}>
           <Text style={styles.resultText}>Quiz finalizado!</Text>
           <Text style={styles.scoreText}>
-            Sua pontuação: {score} de {questions.length}
+            Você acertou {score} de {questions.length} Questões!
           </Text>
           <TouchableOpacity onPress={restartQuiz} style={styles.restartButton}>
-            <Text style={styles.restartText}>Recomeçar Quiz</Text>
+            <Text style={styles.restartText}>Reinicie o Teste</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -113,11 +103,18 @@ export default function Quiz() {
 }
 
 const styles = StyleSheet.create({
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   container: {
     borderRadius: 10,
     backgroundColor: '#000000',
+    //backgroundColor: 'rgba(0, 0, 0, 0.5)',
     alignItems: 'center',
-    width: windowWidth-30,
+    width: windowWidth-20,
     height:windowHeight-200,
     margin: 'auto',
   },
@@ -146,9 +143,7 @@ const styles = StyleSheet.create({
   alertModalContainer: {
     backgroundColor: '#fff',
     borderRadius: 40,
-    justifyContent: 'center',
     alignItems: 'center',
-    gap: 30,
     width: 400,
     height: 300,
     margin: 'auto',
@@ -158,23 +153,37 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
   },
-
   alertModalContainerTextTitle: {
     fontSize: 30,
     color: 'black',
-    textAlign: 'center',
+    marginBottom: 30,
   },
-  alertModalContainerIcon: {
+  alertModalContainerIconCorrect: {
     borderRadius: 100,
     backgroundColor: 'green',
     width: 100,
     height: 100,
 
-    marginTop: -200,
-    zIndex: 200,
-    
+    position: 'relative',
+    top: -45,
     justifyContent: 'center',
-    textAlign: 'center',
+    alignItems: 'center',
+  },
+  alertModalContainerIconIncorrect: {
+    borderRadius: 100,
+    backgroundColor: 'red',
+    width: 100,
+    height: 100,
+
+    position: 'relative',
+    top: -45,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  icon: {
+    color: '#fff',
+    fontSize: 50,
   },
   question: {
     fontSize: 20,
@@ -196,24 +205,29 @@ const styles = StyleSheet.create({
   resultContainer: {
     alignItems: 'center',
     marginTop: 50,
+    marginBottom: 50,
   },
   resultText: {
+    color: '#fff',
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 16,
   },
   scoreText: {
+    color: '#fff',
     fontSize: 22,
     marginBottom: 32,
   },
   restartButton: {
-    backgroundColor: '#1976D2',
+    backgroundColor: 'gold',
     paddingVertical: 12,
     paddingHorizontal: 32,
-    borderRadius: 10,
+    width: 350,
+    borderRadius: 5,
   },
   restartText: {
-    color: 'white',
-    fontSize: 18,
+    margin: 'auto',
+    color: 'black',
+    fontSize: 20,
   },
 });

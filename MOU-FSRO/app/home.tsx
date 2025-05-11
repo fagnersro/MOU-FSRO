@@ -6,10 +6,12 @@ import HeaderConfiguration from "@/components/HeaderConfiguration";
 import ShowMovie from "@/components/ShowMovie";
 import Button from "@/components/Button";
 import { windowHeight, windowWidth } from "../assets/utils/dimensions";
+import QuizConfigurationContext from "./contexts/QuizConfigurationContext";
 
 
 export default function Home() {
   const { imageBackroud, imageLogo } = useContext(HeaderConfigurationContext)
+  const { showQuiz } = useContext(QuizConfigurationContext)
   
   return (
     <ImageBackground source={imageBackroud} resizeMode="cover" height={100}>
