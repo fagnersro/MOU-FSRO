@@ -1,18 +1,19 @@
 
 import { windowWidth } from "@/assets/utils/dimensions";
 import { Link } from "expo-router";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Pressable, View, Text, StyleSheet, Modal } from "react-native";
 import Quiz from "./Quiz";
+import QuizConfigurationContext from "@/app/contexts/QuizConfigurationContext";
 
 type Props = {
     label: string;
     theme?: 'primary' | 'quiz';
-    onPress?: () => void;
 };
 
-export default function Button({ label, theme, onPress}: Props) {
-  const [showQuiz, setShowQuiz] = useState<boolean>(false)
+export default function Button({ label, theme }: Props) {
+  const {showQuiz, setShowQuizFunction} = useContext(QuizConfigurationContext)
+
 
   if (theme === 'primary') {
     return (
@@ -27,9 +28,9 @@ export default function Button({ label, theme, onPress}: Props) {
   if (theme === 'quiz') {
     return (
     <>
-      <Pressable onPress={() => setShowQuiz((prev) => !prev)}>      
+      <Pressable onPress={() => setShowQuizFunction()}>      
         <View style={stylesQuiz.container}>
-            <Text style={stylesQuiz.text}>Teste seus Conhecimentos</Text>
+            <Text style={stylesQuiz.text}>{label}</Text>
         </View>
       </Pressable>
       <Modal 
@@ -37,7 +38,7 @@ export default function Button({ label, theme, onPress}: Props) {
         transparent={true}
         visible={showQuiz}
         onRequestClose={() => {
-          setShowQuiz(!showQuiz);
+          setShowQuizFunction();
           }}>
 
         <Quiz />

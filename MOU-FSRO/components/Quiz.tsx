@@ -1,43 +1,29 @@
 import { windowHeight, windowWidth } from '@/assets/utils/dimensions';
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Pressable } from 'react-native';
 
 import { questions } from '@/assets/utils/questions';
-
+import QuizConfigurationContext from '@/app/contexts/QuizConfigurationContext';
 
 export default function Quiz() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
-  const [showResult, setshowResult] = useState<boolean>(false)
 
-  const handleOptionPress = (optionIndex: number) => {
-    setSelectedOptionIndex(optionIndex);
+  const { 
+    setShowQuizFunction, 
+    handleOptionPress, 
+    restartQuiz, 
+    currentQuestionIndex, 
+    selectedOptionIndex, 
+    score, 
+    showResult 
+  } = useContext(QuizConfigurationContext)
 
-    const isCorrect = optionIndex === questions[currentQuestionIndex].correctAnswerIndex;
-    if (isCorrect) {
-      setScore(prev => prev + 1);
-    }
-
-    setTimeout(() => {
-      if (currentQuestionIndex + 1 < questions.length) {
-        setCurrentQuestionIndex(prev => prev + 1);
-        setSelectedOptionIndex(null);
-      } else {
-        setshowResult(true);
-      }
-    }, 800);
-  };
-
-  const restartQuiz = () => {
-    setCurrentQuestionIndex(0);
-    setScore(0);
-    setSelectedOptionIndex(null);
-    setshowResult(false);
-  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Pressable onPress={setShowQuizFunction}>
+        <Text style={styles.question}>Fechar modal</Text>
+      </Pressable>
+      
       <Text style={styles.question}>{currentQuestionIndex+1} de 10</Text>
       <Text style={styles.question}>{score} certas até agora</Text>
       
@@ -70,8 +56,6 @@ export default function Quiz() {
               </TouchableOpacity>
             );
           })}
-
-            <Text style={styles.question}>Fechar modal</Text>
         </View>
       ) : (
         <View style={styles.resultContainer}>
