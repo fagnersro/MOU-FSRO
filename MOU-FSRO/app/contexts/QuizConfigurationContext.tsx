@@ -44,7 +44,7 @@ export function QuizConfigurationProvider ({ children }: QuizConfigurationProvid
           } else {
             setshowResult(true);
           }
-        }, 800);
+        }, 4000);
       };
     
       const restartQuiz = () => {

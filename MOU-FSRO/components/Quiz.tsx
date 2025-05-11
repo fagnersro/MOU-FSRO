@@ -1,6 +1,6 @@
 import { windowHeight, windowWidth } from '@/assets/utils/dimensions';
 import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Pressable, Modal } from 'react-native';
 
 import { questions } from '@/assets/utils/questions';
 import QuizConfigurationContext from '@/app/contexts/QuizConfigurationContext';
@@ -20,42 +20,74 @@ export default function Quiz() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable onPress={setShowQuizFunction}>
-        <Text style={styles.question}>Fechar modal</Text>
-      </Pressable>
-      
-      <Text style={styles.question}>{currentQuestionIndex+1} de 10</Text>
-      <Text style={styles.question}>{score} certas até agora</Text>
-      
       {!showResult ? (
-        <View style={styles.quizContainer}>
+        <View style={styles.wrapper}>
+
+      <View>
+        <Text style={styles.headerStatusText1}>{currentQuestionIndex+1} de 10</Text>
+        <Text style={styles.headerStatusText2}>{score} certas até agora</Text>
+      </View>
+
           <Text style={styles.question}>
             {questions[currentQuestionIndex].question}
           </Text>
+          <View>
+            {questions[currentQuestionIndex].options.map((option, index) => {
+              const isSelected = index === selectedOptionIndex;
+              const isCorrect = index === questions[currentQuestionIndex].correctAnswerIndex;
+              const backgroundColor =
+                selectedOptionIndex !== null
+                  ? isSelected
+                    ? isCorrect
+                      ? '#4CAF50' // verde
+                      : '#F44336' // vermelho
+                    : 'white'
+                  : 'white';
 
-          {questions[currentQuestionIndex].options.map((option, index) => {
-            const isSelected = index === selectedOptionIndex;
-            const isCorrect = index === questions[currentQuestionIndex].correctAnswerIndex;
-            const backgroundColor =
-              selectedOptionIndex !== null
-                ? isSelected
-                  ? isCorrect
-                    ? '#4CAF50' // verde
-                    : '#F44336' // vermelho
-                  : 'white'
-                : 'white';
-
-            return (
-              <TouchableOpacity
-                key={index}
-                style={[styles.optionButton, { backgroundColor }]}
-                onPress={() => handleOptionPress(index)}
-                disabled={selectedOptionIndex !== null}
-              >
-                <Text style={styles.optionText}>{option}</Text>
-              </TouchableOpacity>
-            );
-          })}
+              const alertModal = 
+                selectedOptionIndex !== null
+                  ? isSelected 
+                    ? isCorrect
+                      ? 'acertou'
+                      : 'errou'
+                    : null
+                  : null;
+  
+              return (
+                <TouchableOpacity
+                  key={index}
+                  style={[styles.optionButton, { backgroundColor }]}
+                  onPress={() => handleOptionPress(index)}
+                  disabled={selectedOptionIndex !== null}
+                >
+                  <Text style={styles.optionText}>{option}</Text>
+                  
+                  {alertModal === 'acertou' ?
+                      <Modal
+                        animationType='slide'
+                        visible={alertModal === 'acertou'}
+                        transparent={true}
+                      >
+                        <View style={styles.alertModalContainer}>
+                          <Text style={styles.alertModalContainerTextTitle}>Resposta Correta:</Text>
+                          <Text style={styles.alertModalContainerText}>{questions[currentQuestionIndex].alertModalCorrect}</Text>
+                        </View>
+                      </Modal>
+                      :
+                      <Modal
+                        animationType='slide'
+                        visible={alertModal === 'errou'}
+                        transparent={true}
+                      >
+                      <View style={styles.alertModalContainer}>
+                        <Text style={styles.alertModalContainerText}>{questions[currentQuestionIndex].alertModalIncorrect}</Text>
+                      </View>
+                    </Modal>
+                    }  
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </View>
       ) : (
         <View style={styles.resultContainer}>
@@ -68,6 +100,11 @@ export default function Quiz() {
           </TouchableOpacity>
         </View>
       )}
+      <View>
+        <Pressable onPress={setShowQuizFunction}style={styles.closeContainer} >
+          <Text>X</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 }
@@ -76,20 +113,56 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
     backgroundColor: '#000000',
-    justifyContent: 'center',
-    padding: 20,
-    width: windowWidth-50,
-    height:windowHeight-70,
-    margin: 'auto'
+    alignItems: 'center',
+    width: windowWidth-30,
+    height:windowHeight-200,
+    margin: 'auto',
   },
-  quizContainer: {
+  wrapper: {
+    gap: 20,
+    padding: 30,
     marginTop: 40,
-    padding: 20,
+  },
+  headerStatusText1: {
+    fontSize: 14,
+    marginBottom: 20,
+    color: 'gold'
+  },
+  headerStatusText2: {
+    fontSize: 20,
+    color: 'gold'
+  },
+  closeContainer: {
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 30,
+    height: 30,
+    backgroundColor: 'gold',
+  },
+  alertModalContainer: {
+    backgroundColor: '#fff',
+    borderRadius: 40,
+    justifyContent: 'center',
+    width: 400,
+    height: 300,
+    margin: 'auto',
+  },
+  alertModalContainerText: {
+    fontSize: 20,
+    color: 'black',
+    textAlign: 'center',
+  },
+
+  alertModalContainerTextTitle: {
+    fontSize: 30,
+    color: 'black',
+    textAlign: 'center',
   },
   question: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '600',
-    marginBottom: 20,
+    marginBottom: 30,
     color: '#fff'
   },
   optionButton: {
