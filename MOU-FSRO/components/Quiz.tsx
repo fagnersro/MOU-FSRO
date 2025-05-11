@@ -1,31 +1,9 @@
 import { windowHeight, windowWidth } from '@/assets/utils/dimensions';
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 
+import { questions } from '@/assets/utils/questions';
 
-type questionsType ={
-  question: string;
-  options: Array<string>
-  correctAnswerIndex: number
-}[]
-
-const questions: questionsType = [
-  {
-    question: "Qual é a capital do Brasil?",
-    options: ["Brasília", "Rio de Janeiro", "São Paulo", "Salvador"],
-    correctAnswerIndex: 0,
-  },
-  {
-    question: "React Native é baseado em qual linguagem?",
-    options: ["Java", "Swift", "JavaScript", "Python"],
-    correctAnswerIndex: 2,
-  },
-  {
-    question: "Quantos planetas existem no sistema solar?",
-    options: ["7", "8", "9", "10"],
-    correctAnswerIndex: 1,
-  },
-];
 
 export default function Quiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -61,7 +39,7 @@ export default function Quiz() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.question}>{currentQuestionIndex+1} de 10</Text>
-      <Text style={styles.question}>0 certas até agora</Text>
+      <Text style={styles.question}>{score} certas até agora</Text>
       
       {!showResult ? (
         <View style={styles.quizContainer}>
