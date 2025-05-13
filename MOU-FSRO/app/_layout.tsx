@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack } from "expo-router";
 import { HeaderConfigurationProvider } from "./contexts/HeaderConfigurationContext";
-import { QuizConfigurationProvider } from "./contexts/QuizConfigurationContext";
+import { QuizConfigurationProvider } from './contexts/QuizConfigurationContext'
 
 export default function RootLayout() {
   return (

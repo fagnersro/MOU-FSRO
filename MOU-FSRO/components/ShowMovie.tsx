@@ -98,6 +98,13 @@ export default function ShowMovie({type}: ShowMovieType) {
             <Pressable style={containerMovie.pressabeArea} onPress={() => setShowMovie((prevState) => !prevState)}>
               <Image source={amount.imgMovie} style={containerMovie.pressableImage}/>
             </Pressable>
+
+            <View style={{position: 'absolute', zIndex: 3, right: 50, bottom: 10, flexDirection: 'row', alignItems: 'flex-start'}}>
+              <View style={{backgroundColor: '#000000', paddingHorizontal: 5, paddingVertical: 0, marginRight: 10}} >
+                <Text  style={styles.texto}>Nome do vídeo</Text>
+              </View>
+              <Image />
+            </View>
           </View>
           
           <View style={containerMovie.wrapper}>
@@ -111,6 +118,16 @@ export default function ShowMovie({type}: ShowMovieType) {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+      
+  texto: {
+    //fontFamily: 'CourierPrime-Bold',
+    color: '#fff',
+    fontSize: 15,
+    textAlign: 'center'
+  },
+})
 
 const containerMovie = StyleSheet.create({
   container: {

@@ -3,8 +3,9 @@ import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Pressable, Modal } from 'react-native';
 
 import { questions } from '@/assets/utils/questions';
-import QuizConfigurationContext from '@/app/contexts/QuizConfigurationContext';
 import { AntDesign } from '@expo/vector-icons';
+
+import QuizConfigurationContext from '@/app/contexts/QuizConfigurationContext';
 
 export default function Quiz() {
 
@@ -30,9 +31,6 @@ export default function Quiz() {
 
       <View>
         <View>
-          <Pressable>
-            <AntDesign />
-          </Pressable>
           <Text style={styles.headerStatusText1}>{currentQuestionIndex+1} de 10</Text>
         </View>
         <Text style={styles.headerStatusText2}>{score} certas até agora</Text>
@@ -144,7 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 40,
     alignItems: 'center',
-    width: 400,
+    width: 380,
     height: 300,
     margin: 'auto',
   },
