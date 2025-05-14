@@ -47,14 +47,26 @@ const blockAmount: blockAmountType = [
   },
 ]
 
+const vd = 'https://firebasestorage.googleapis.com/v0/b/movimentos-de-ordem-unida.appspot.com/o/IMG_0086.mp4?alt=media&token=cbe463e7-b0ae-4197-b9ad-1103fc664a46'
+
 const videoSource = require('@/assets/movie/IMG_0086.mp4')
 //const videoSource = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
 
 
 export default function ShowMovie({type}: ShowMovieType) {
-
   const [showMovie, setShowMovie] = useState<boolean>(false)
-  
+  const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null)
+  const [watchedVideos, setWatchedVideos] = useState<number[]>([])
+
+  const handlePressVideo = (id: number) => {
+    setSelectedVideoId(id);
+    setShowMovie(true);
+
+    if (!watchedVideos.includes(id)) {
+      setWatchedVideos((prev) => [...prev, id]);
+    }
+  };
+
   return (
       <>
         <Modal 
@@ -62,11 +74,11 @@ export default function ShowMovie({type}: ShowMovieType) {
           transparent={true}
           visible={showMovie}
           onRequestClose={() => {
-            setShowMovie(!showMovie);
+            setShowMovie(false);
           }}>
           <View style={containerPlayMovie.container}>
             <View style={containerPlayMovie.wrapperContent}>
-              <Pressable onPress={() => setShowMovie(!showMovie)} style={containerPlayMovie.wrapperContentPressable}>
+              <Pressable onPress={() => setShowMovie(false)} style={containerPlayMovie.wrapperContentPressable}>
                 <AntDesign name="arrowleft" style={{color: '#fff'}} size={20}/>
                 <Text style={containerPlayMovie.text}>Voltar</Text>
               </Pressable>
@@ -90,20 +102,22 @@ export default function ShowMovie({type}: ShowMovieType) {
           <View style={containerMovie.container} key={amount.id}>
           <View style={containerMovie.wrapper}>
             {blockAmount.map((amount) => (
-              <View style={containerMovie.block} key={amount.id}></View>
+              <View style={containerMovie.block} key={`top-${amount.id}`}></View>
             ))}
           </View>
 
           <View style={containerMovie.wrapperPressable}>
-            <Pressable style={containerMovie.pressabeArea} onPress={() => setShowMovie((prevState) => !prevState)}>
+            <Pressable style={containerMovie.pressabeArea} onPress={() => handlePressVideo(amount.id)}>
               <Image source={amount.imgMovie} style={containerMovie.pressableImage}/>
             </Pressable>
 
-            <View style={{position: 'absolute', zIndex: 3, right: 50, bottom: 10, flexDirection: 'row', alignItems: 'flex-start'}}>
-              <View style={{backgroundColor: '#000000', paddingHorizontal: 5, paddingVertical: 0, marginRight: 10}} >
-                <Text  style={styles.texto}>Nome do vídeo</Text>
+            <View style={{ position: 'absolute', zIndex: 3, right: 10, bottom: 10, flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ backgroundColor: '#000000AA', paddingHorizontal: 6, paddingVertical: 3, borderRadius: 4 }}>
+                <Text style={styles.texto}>Vídeo {amount.id}</Text>
               </View>
-              <Image />
+                {watchedVideos.includes(amount.id) && (
+                  <AntDesign name="checkcircle" size={20} color={"lime"} style={{ marginLeft: 8 }} />
+                )}
             </View>
           </View>
           
