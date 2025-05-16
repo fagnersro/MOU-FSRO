@@ -6,6 +6,7 @@ import { windowHeight, windowWidth } from "@/assets/utils/dimensions";
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import PlayVideo from "./PlayVideo";
+import { cloudinaryVideos } from "@/services/cloudnary";
 
 type ShowMovieType = {
   type: string;
@@ -47,11 +48,11 @@ const blockAmount: blockAmountType = [
   },
 ]
 
-const vd = 'https://firebasestorage.googleapis.com/v0/b/movimentos-de-ordem-unida.appspot.com/o/IMG_0086.mp4?alt=media&token=cbe463e7-b0ae-4197-b9ad-1103fc664a46'
+//const videoSource = require('@/assets/movie/IMG_0086.mp4')
 
-const videoSource = require('@/assets/movie/IMG_0086.mp4')
-//const videoSource = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+const videoSource = 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747186987/iwoyb4pbxgghxezlvllx.mp4'
 
+cloudinaryVideos
 
 export default function ShowMovie({type}: ShowMovieType) {
   const [showMovie, setShowMovie] = useState<boolean>(false)
@@ -85,6 +86,7 @@ export default function ShowMovie({type}: ShowMovieType) {
 
               <View style={containerPlayMovie.contentMovie}>
                 <PlayVideo videoSource={videoSource}/>
+
               </View>
 
               <View style={containerPlayMovie.contentText}>
