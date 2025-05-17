@@ -21,7 +21,7 @@ export default function Home() {
         </View>
 
         <View>
-          <ShowMovie type="GOD" />
+          <ShowMovie />
         </View>
 
         <View>

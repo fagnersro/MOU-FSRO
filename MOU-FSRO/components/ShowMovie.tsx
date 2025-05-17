@@ -8,57 +8,51 @@ import React from "react";
 import PlayVideo from "./PlayVideo";
 import { cloudinaryVideos } from "@/services/cloudnary";
 
-type ShowMovieType = {
-  type: string;
-}
-
 type blockAmountType = {
   id: number;
-  imgMovie: ImageSourcePropType;
 }[]
 
 const blockAmount: blockAmountType = [
   {
     id: 1,
-    imgMovie:IMG_0086,
   },
   {
     id: 2,
-    imgMovie:IMG_0086,
   },
   {
     id: 3,
-    imgMovie:IMG_0086,
   },
   {
     id: 4,
-    imgMovie:IMG_0086,
   },
   {
     id: 5,
-    imgMovie:IMG_0086,
   },
   {
     id: 6,
-    imgMovie:IMG_0086,
   },
   {
     id: 7,
-    imgMovie:IMG_0086,
   },
 ]
 
-//const videoSource = require('@/assets/movie/IMG_0086.mp4')
-
-const videoSource = 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747186987/iwoyb4pbxgghxezlvllx.mp4'
-
 cloudinaryVideos
 
-export default function ShowMovie({type}: ShowMovieType) {
+export default function ShowMovie() {
   const [showMovie, setShowMovie] = useState<boolean>(false)
   const [selectedVideoId, setSelectedVideoId] = useState<number | null>(null)
   const [watchedVideos, setWatchedVideos] = useState<number[]>([])
 
+  const getVideoUrlById = (id: number) => {
+    const video = cloudinaryVideos.find((video) => video.id === id);
+    return video?.url || '';
+  }
+
+  const getVideoDescriptionById = (id: number) => {
+    const description = cloudinaryVideos.find((description) => description.id === id);
+    return description?.description || ''
+  }
+  
   const handlePressVideo = (id: number) => {
     setSelectedVideoId(id);
     setShowMovie(true);
@@ -85,52 +79,52 @@ export default function ShowMovie({type}: ShowMovieType) {
               </Pressable>
 
               <View style={containerPlayMovie.contentMovie}>
-                <PlayVideo videoSource={videoSource}/>
-
+                {selectedVideoId && (
+                  <PlayVideo videoSource={getVideoUrlById(selectedVideoId)} />
+                )}
               </View>
 
               <View style={containerPlayMovie.contentText}>
                 <Text style={containerPlayMovie.textMovie}>
-                  Ao toque de "Atenção", o militar que estava à vontade em formatura retorna
-                  à posição de "descansar".
+                  {getVideoDescriptionById(selectedVideoId!)}
                 </Text>
               </View>
             </View>
           </View>
         </Modal>
 
-      <ScrollView horizontal={true}>
-        {blockAmount.map((amount) => (
-          <View style={containerMovie.container} key={amount.id}>
+       <ScrollView horizontal={true}>
+        {cloudinaryVideos.map((item) => (
+          <View style={containerMovie.container} key={item.id}>
           <View style={containerMovie.wrapper}>
-            {blockAmount.map((amount) => (
-              <View style={containerMovie.block} key={`top-${amount.id}`}></View>
+            {blockAmount.map((item) => (
+              <View style={containerMovie.block} key={`top-${item.id}`}></View>
             ))}
           </View>
 
           <View style={containerMovie.wrapperPressable}>
-            <Pressable style={containerMovie.pressabeArea} onPress={() => handlePressVideo(amount.id)}>
-              <Image source={amount.imgMovie} style={containerMovie.pressableImage}/>
+            <Pressable style={containerMovie.pressabeArea} onPress={() => handlePressVideo(item.id)}>
+              <Image source={item.thumbnail} style={containerMovie.pressableImage}/>
             </Pressable>
 
             <View style={{ position: 'absolute', zIndex: 3, right: 10, bottom: 10, flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ backgroundColor: '#000000AA', paddingHorizontal: 6, paddingVertical: 3, borderRadius: 4 }}>
-                <Text style={styles.texto}>Vídeo {amount.id}</Text>
+                <Text style={styles.texto}>{item.title}</Text>
               </View>
-                {watchedVideos.includes(amount.id) && (
+                {watchedVideos.includes(item.id) && (
                   <AntDesign name="checkcircle" size={20} color={"lime"} style={{ marginLeft: 8 }} />
                 )}
             </View>
           </View>
           
           <View style={containerMovie.wrapper}>
-            {blockAmount.map((amount) => (
-              <View style={containerMovie.block} key={amount.id}></View>
+            {blockAmount.map((item) => (
+              <View style={containerMovie.block} key={item.id}></View>
             ))}
           </View>
         </View>
         ))}
-        </ScrollView>
+      </ScrollView>
     </>
   );
 }

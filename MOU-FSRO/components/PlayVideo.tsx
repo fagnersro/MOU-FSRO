@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, StyleSheet, View } from "react-native";
-import { useVideoPlayer, VideoView } from 'expo-video'
+import { useVideoPlayer, VideoView,  } from 'expo-video'
 import { useEvent } from "expo";
+
 
 type PlayVideoProps = {
   videoSource: string;
