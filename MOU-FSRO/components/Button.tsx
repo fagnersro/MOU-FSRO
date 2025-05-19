@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 
 const stylesQuiz = StyleSheet.create({
   container: {
-   backgroundColor: 'yellow',
+   backgroundColor: 'gold',
    borderRadius: 15,
    padding: 5,
    height: 60,

@@ -6,6 +6,7 @@ import { Image } from "react-native"
 import HeaderConfigurationContext from "@/app/contexts/HeaderConfigurationContext"
 
 import bgBrasil from '@/assets/images/bgBrasil.png'
+import bgMarinha from '@/assets/images/bgMarinha.png'
 import bgExercito from '@/assets/images/bgExercito.png'
 import bgAero from '@/assets/images/bgAero.png'
 import bgBombeiros from '@/assets/images/bgBombeiros.png'
@@ -51,7 +52,7 @@ const iconAreaData: iconAreaDataType = [
   {
     id: 3,
     urlIcon: icoMarinha,
-    bgImage: icoMarinha,
+    bgImage: bgMarinha,
     text: 'Orgulho em fazer parte da Marinha',
     title: 'Marinha',
     logoImage: logoMarinha,
@@ -95,7 +96,7 @@ export default function HeaderConfiguration() {
             <View style={settingTheme.wrapperPressableArea}>
               <Text style={settingTheme.info}>{text || 'Brasil'}</Text>
 
-              <Pressable onPress={showSettingsModal} >
+              <Pressable onPress={showSettingsModal}>
                 <AntDesign name="close" style={settingTheme.icon}/>
               </Pressable>
             </View>
@@ -115,7 +116,6 @@ export default function HeaderConfiguration() {
                   <Image 
                     source={dataIcon.urlIcon} 
                     style={settingTheme.iconArea} 
-                    resizeMode="stretch"
                   />
                 </Pressable> 
               ))}
@@ -125,7 +125,7 @@ export default function HeaderConfiguration() {
         <View style={settingTheme.container}>
           <View style={settingTheme.wrapperPressableArea}>
             <Text style={settingTheme.titleInfo} >{headerTitle || 'Brasil'}</Text>
-            <Pressable onPress={showSettingsModal}>
+            <Pressable onPress={showSettingsModal} style={settingTheme.backgroud}>
               <AntDesign name="setting" style={settingTheme.iconSetting} />
             </Pressable>
           </View>
@@ -146,7 +146,12 @@ const settingTheme = StyleSheet.create({
     height: 100,
   },
   backgroud: {
-
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    width: 50,
+    height: 50,
+    backgroundColor: '#006400' // Dark Green
   },
   wrapperPressableArea: {
     flexDirection: 'row',
@@ -172,16 +177,21 @@ const settingTheme = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 100,
   
-    width: 35,
-    height: 35,
-    overflow: 'hidden'
+    width: 40,
+    height: 40,
+
+    resizeMode: 'stretch',
   },
   iconSetting: {
     fontSize: 40,
     color: '#fff',
   },
   icon: {
-    fontSize: 25,
-    color: '#fff',
+    backgroundColor: '#fff',
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 20,
+    color: '#000000',
   }
 })

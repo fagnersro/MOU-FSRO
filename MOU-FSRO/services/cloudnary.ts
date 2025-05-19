@@ -98,26 +98,26 @@ export const cloudinaryVideos: VideoItem[] =[
     title: 'Olhar à direita',
     description: 'Ao toque de “olhar à direita”, o militar que está marchando presta continência em uma passada e vira todo o seu tronco para a direita na próxima passada. Ou seja, o movimento é realizado em duas etapas.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279691/IMG_0103_nnfmwl.mp4',
-    thumbnail: require('assets/images/png/IMG_0097.png')
+    thumbnail: require('assets/images/png/IMG_0103.png')
   },
   {
     id: 14,
     title: 'Olhar em frente',
     description: 'Ao toque de “olhar em frente”, o militar que está marchando desfaz a continência em uma passada e vira todo o seu tronco para a sua frente na próxima passada. Ou seja, o movimento é realizado em duas etapas.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279688/IMG_0106_dv8zkx.mp4',
-    thumbnail: require('assets/images/png/IMG_0103.png')
+    thumbnail: require('assets/images/png/IMG_0106.png')
   },
   {
     id: 15,
     title: 'Última forma',
     description: 'O objetivo aqui é demonstrar o toque de “última forma”. Este toque pode ser realizado após qualquer erro de comando. Foi utilizado o toque de “apresentar armas” somente como exemplo.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279689/IMG_0107_qxi21d.mp4',
-    thumbnail: require('assets/images/png/IMG_0106.png')
+    thumbnail: require('assets/images/png/IMG_0107.png')
   },
   {
     id: 16,
     title: 'Acelerado',
-    description: 'O objetivo aqui é demonstrar o toque de “última forma”. Este toque pode ser realizado após qualquer erro de comando. Foi utilizado o toque de “apresentar armas” somente como exemplo.',
+    description: 'Ao toque de “acelerado”, o militar, que estava em “sentido”, fecha os punhos, dobra os braços em formato de “L” e começa a trotar. Quando ele já estiver em “acelerado”, após o comando de “marche”, o militar começa a se deslocar.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279693/IMG_0109_gmuppb.mp4',
     thumbnail: require('assets/images/png/IMG_0107.png')
   },

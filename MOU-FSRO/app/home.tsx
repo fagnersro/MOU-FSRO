@@ -1,11 +1,12 @@
-import React from "react";
 import {Image, View, StyleSheet, ImageBackground } from "react-native";
 import { useContext } from "react";
+import { windowHeight, windowWidth } from "../assets/utils/dimensions";
+
+import React from "react";
 import HeaderConfigurationContext from "./contexts/HeaderConfigurationContext";
 import HeaderConfiguration from "@/components/HeaderConfiguration";
 import ShowMovie from "@/components/ShowMovie";
 import Button from "@/components/Button";
-import { windowHeight, windowWidth } from "../assets/utils/dimensions";
 
 
 export default function Home() {

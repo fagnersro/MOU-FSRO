@@ -1,4 +1,4 @@
-import { SafeAreaView, Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 
 import bgBrasil from '@/assets/images/bgBrasil.png'
 import logoBco from '@/assets/images/logoBco.png'
@@ -7,13 +7,12 @@ import { windowWidth, windowHeight } from '@/assets/utils/dimensions'
 import Button from "@/components/Button";
 import React from "react";
 
-export default function Index() {
+export default function Index() {  
   return (
-    <ImageBackground source={bgBrasil} style={styles.background} resizeMode="cover">
+    <ImageBackground source={bgBrasil} resizeMode="cover">
       <View style={styles.container} >
-        <Image source={logoBco} style={styles.logo} />
-        
         <View style={styles.wrapper}>
+        <Image source={logoBco} style={styles.logo} />
           <Text style={styles.text}>
             Este aplicativo, seu(s) proprietários(s), seus meios
             de comercialização, ou o desenvolvedor não possuem nenhuma responsabilidade
@@ -35,15 +34,17 @@ const styles = StyleSheet.create({
     height: windowHeight,
     padding: 20,
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-  },
-  background: {
+    justifyContent: 'space-between',
   },
   logo: {
-    width:windowWidth-40,
-    resizeMode: 'contain',
+    width:windowWidth-150,
+    height:windowHeight-650,
+    resizeMode: 'stretch',
   },
   wrapper: {
+    alignItems: 'center',
+    padding:30,
+    gap: 50,
   },
   text: {
     color: '#fff',

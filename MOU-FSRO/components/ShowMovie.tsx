@@ -1,12 +1,13 @@
-import {Text, ScrollView, StyleSheet, View, Pressable, Image, ImageSourcePropType, Modal } from "react-native";
+import {Text, ScrollView, StyleSheet, View, Pressable, Image, Modal } from "react-native";
 
-import IMG_0086 from '@/assets/images/png/IMG_0086.png'
 import { useState } from "react";
 import { windowHeight, windowWidth } from "@/assets/utils/dimensions";
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import PlayVideo from "./PlayVideo";
 import { cloudinaryVideos } from "@/services/cloudnary";
+
+import iconView from '@/assets/images/viewed.png'
 
 type blockAmountType = {
   id: number;
@@ -107,13 +108,13 @@ export default function ShowMovie() {
               <Image source={item.thumbnail} style={containerMovie.pressableImage}/>
             </Pressable>
 
-            <View style={{ position: 'absolute', zIndex: 3, right: 10, bottom: 10, flexDirection: 'row', alignItems: 'center' }}>
+            <View style={{ position: 'absolute', zIndex: 3, right: 30, bottom: 10, flexDirection: 'column', alignItems: 'center', gap: 6}}>
+                {watchedVideos.includes(item.id) && (
+                  <Image source={iconView} style={{ marginLeft: 8, width: 25, height: 25}} />
+                )}
               <View style={{ backgroundColor: '#000000AA', paddingHorizontal: 6, paddingVertical: 3, borderRadius: 4 }}>
                 <Text style={styles.texto}>{item.title}</Text>
               </View>
-                {watchedVideos.includes(item.id) && (
-                  <AntDesign name="checkcircle" size={20} color={"lime"} style={{ marginLeft: 8 }} />
-                )}
             </View>
           </View>
           
@@ -132,7 +133,6 @@ export default function ShowMovie() {
 const styles = StyleSheet.create({
       
   texto: {
-    //fontFamily: 'CourierPrime-Bold',
     color: '#fff',
     fontSize: 15,
     textAlign: 'center'
