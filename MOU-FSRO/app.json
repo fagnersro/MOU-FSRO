@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MOU-FSRO",
-    "slug": "MOU-FSRO",
+    "name": "Movimento de Ordem Unida",
+    "slug": "MOU",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,13 +9,15 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.MOUFSRO"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anonymous.MOUFSRO"
     },
     "web": {
       "bundler": "metro",
@@ -24,7 +26,8 @@
     },
     "plugins": [
       [
-        "expo-video", {
+        "expo-video",
+        {
           "supportsBackgroundPlayback": true,
           "supportsPictureInPicture": true
         }

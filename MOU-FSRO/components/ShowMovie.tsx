@@ -81,9 +81,9 @@ export default function ShowMovie() {
 
               <View style={containerPlayMovie.contentMovie}>
                 {selectedVideoId && (
-                  <PlayVideo videoSource={getVideoUrlById(selectedVideoId)} />
+                <PlayVideo source={getVideoUrlById(selectedVideoId)} />
                 )}
-              </View>
+              </View>   
 
               <View style={containerPlayMovie.contentText}>
                 <Text style={containerPlayMovie.textMovie}>
@@ -102,7 +102,6 @@ export default function ShowMovie() {
               <View style={containerMovie.block} key={`top-${item.id}`}></View>
             ))}
           </View>
-
           <View style={containerMovie.wrapperPressable}>
             <Pressable style={containerMovie.pressabeArea} onPress={() => handlePressVideo(item.id)}>
               <Image source={item.thumbnail} style={containerMovie.pressableImage}/>

@@ -1,50 +1,53 @@
-import React from "react";
-import { Button, StyleSheet, View } from "react-native";
-import { useVideoPlayer, VideoView,  } from 'expo-video'
-import { useEvent } from "expo";
+import React, { useState } from 'react';
+import Video from 'react-native-video';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
+
+export default function PlayerVideo({source}: any) {
+    const [loading, setLoading] = useState(true);
 
 
-type PlayVideoProps = {
-  videoSource: string;
-}
-
-export default function PlayVideo({ videoSource }: PlayVideoProps) {
-  const player = useVideoPlayer(videoSource, player => {
-    player.loop = true;
-    player.play();
-  });
-  
-  const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
   return (
     <View style={styles.container}>
-      <VideoView player={player} style={styles.containerVideoView} allowsFullscreen allowsPictureInPicture >
-        <View>
-          <Button 
-            title={isPlaying ? 'Pause' : 'Play'}
-            onPress={() => {
-              if (isPlaying) {
-                player.pause();
-              } else {
-                player.play();
-              }
-            }}
-          />
+       {loading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#007AFF" />
         </View>
-      </VideoView>
+      )}
+
+      <Video
+        source={{ uri: source }}
+        style={[styles.containerVideoView, loading && styles.hidden]}
+        controls
+        resizeMode="contain"
+        onError={(e) => console.log('Erro:', e)}
+        onLoadStart={() => setLoading(true)}
+        onLoad={() => setLoading(false)}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   containerVideoView: {
-    borderWidth: 2,
-    borderColor: '#fff',
-    width: 400,
+   
+    width: '100%',
+    maxWidth: 400,
     height: 540,
-  }
+  },
+    hidden: {
+    display: 'none',
+  },
+    loadingContainer: {
+    position: 'absolute',
+    zIndex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
 })
