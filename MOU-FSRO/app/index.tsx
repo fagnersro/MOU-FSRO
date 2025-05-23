@@ -3,14 +3,53 @@ import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import bgBrasil from '@/assets/images/bgBrasil.png'
 import logoBco from '@/assets/images/logoBco.png'
 
+import * as SplashScreen from 'expo-splash-screen';
+
 import { windowWidth, windowHeight } from '@/assets/utils/dimensions'
 import Button from "@/components/Button";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 export default function Index() {  
+
+
+SplashScreen.preventAutoHideAsync();
+
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
+
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(() => {
+    if (appIsReady) {
+      SplashScreen.hide();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
+  }
+
+
+
   return (
     <ImageBackground source={bgBrasil} resizeMode="cover">
-      <View style={styles.container} >
+      <View onLayout={onLayoutRootView} style={styles.container} >
         <View style={styles.wrapper}>
         <Image source={logoBco} style={styles.logo} />
           <Text style={styles.text}>

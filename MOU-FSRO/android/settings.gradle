@@ -31,7 +31,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
 }
 expoAutolinking.useExpoModules()
 
-rootProject.name = 'MOU-FSRO'
+rootProject.name = 'Movimento de Ordem Unida'
 
 expoAutolinking.useExpoVersionCatalog()
 
