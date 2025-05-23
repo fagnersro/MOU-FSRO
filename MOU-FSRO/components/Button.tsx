@@ -2,7 +2,7 @@
 import { windowWidth } from "@/assets/utils/dimensions";
 import { Link } from "expo-router";
 import React, { useContext, useState } from "react";
-import { Pressable, View, Text, StyleSheet, Modal } from "react-native";
+import { Pressable, View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import Quiz from "./Quiz";
 import QuizConfigurationContext from "@/app/contexts/QuizConfigurationContext";
 
@@ -18,9 +18,11 @@ export default function Button({ label, theme }: Props) {
   if (theme === 'primary') {
     return (
       <View style={styles.buttonPrimary}>
+        <TouchableOpacity>
           <Link href={'/home'} style={styles.text}>
             <Text style={styles.text}>{label}</Text>
           </Link>
+        </TouchableOpacity>
       </View>
     );
   } 
@@ -28,11 +30,11 @@ export default function Button({ label, theme }: Props) {
   if (theme === 'quiz') {
     return (
     <>
-      <Pressable onPress={() => setShowQuizFunction()}>      
+      <TouchableOpacity onPress={() => setShowQuizFunction()}>      
         <View style={stylesQuiz.container}>
             <Text style={stylesQuiz.text}>{label}</Text>
         </View>
-      </Pressable>
+      </TouchableOpacity>
       <Modal 
         animationType="slide" 
         transparent={true}
