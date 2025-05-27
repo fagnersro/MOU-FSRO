@@ -13,7 +13,7 @@ export default function Home() {
   const { imageBackroud, imageLogo } = useContext(HeaderConfigurationContext)
   
   return (
-    <ImageBackground source={imageBackroud} resizeMode="cover" height={100}>
+    <ImageBackground source={imageBackroud} resizeMode="cover" height={100} style={{ height: windowHeight, width: windowWidth }}>
       <View style={styles.container}>
         <HeaderConfiguration />
         

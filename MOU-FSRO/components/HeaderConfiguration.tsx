@@ -10,13 +10,15 @@ import bgMarinha from '@/assets/images/bgMarinha.png'
 import bgExercito from '@/assets/images/bgExercito.png'
 import bgAero from '@/assets/images/bgAero.png'
 import bgBombeiros from '@/assets/images/bgBombeiros.png'
+import bgPolicia from '@/assets/images/bgPolicia.png'
 
 import iconExercito from '@/assets/images/icoExercito.png'
 import iconAero from '@/assets/images/icoAero.png'
 import iconBombeiros from '@/assets/images/icoBombeiros.png'
 import icoMarinha from '@/assets/images/icoMarinha.png'
+import icoPolicia from '@/assets/images/icoPolicia.png'
 
-//import logoBco from '@/assets/images/logoBco.png'
+
 import logoExercito from '@/assets/images/logoExercito.png'
 import logoAero from '@/assets/images/logoAero.png'
 import logoBombeiros from '@/assets/images/logoBombeiros.png'
@@ -73,6 +75,14 @@ const iconAreaData: iconAreaDataType = [
     title: 'Bombeiros',
     logoImage: logoBombeiros
   },
+    {
+    id: 6,
+    urlIcon: icoPolicia,
+    bgImage: bgPolicia,
+    text: 'Orgulho em fazer parte da Polícia',
+    title: 'Polícia',
+    logoImage: logoBombeiros
+  },
 ]
 
 export default function HeaderConfiguration() {
@@ -115,7 +125,8 @@ export default function HeaderConfiguration() {
                   >
                   <Image 
                     source={dataIcon.urlIcon} 
-                    style={settingTheme.iconArea} 
+                    style={settingTheme.iconArea}
+                    resizeMode="stretch"
                   />
                 </Pressable> 
               ))}
@@ -179,8 +190,7 @@ const settingTheme = StyleSheet.create({
   
     width: 40,
     height: 40,
-
-    resizeMode: 'stretch',
+  
   },
   iconSetting: {
     fontSize: 40,

@@ -8,6 +8,7 @@ import PlayVideo from "./PlayVideo";
 import { cloudinaryVideos } from "@/services/cloudnary";
 
 import iconView from '@/assets/images/viewed.png'
+import iconViewOff from '@/assets/images/viewedOff.png'
 
 type blockAmountType = {
   id: number;
@@ -108,6 +109,9 @@ export default function ShowMovie() {
             </Pressable>
 
             <View style={{ position: 'absolute', zIndex: 3, right: 30, bottom: 10, flexDirection: 'column', alignItems: 'center', gap: 6}}>
+                  {watchedVideos.includes(item.id) || (
+                    <Image source={iconViewOff} style={{ marginLeft: 8, width: 25, height: 25}} />
+                  )}
                 {watchedVideos.includes(item.id) && (
                   <Image source={iconView} style={{ marginLeft: 8, width: 25, height: 25}} />
                 )}

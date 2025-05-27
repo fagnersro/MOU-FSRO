@@ -1,7 +1,7 @@
 
 import { windowWidth } from "@/assets/utils/dimensions";
 import { Link } from "expo-router";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Pressable, View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import Quiz from "./Quiz";
 import QuizConfigurationContext from "@/app/contexts/QuizConfigurationContext";
