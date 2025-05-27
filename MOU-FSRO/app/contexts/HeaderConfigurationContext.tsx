@@ -25,7 +25,7 @@ type HeaderConfigurationProviderProps = {
 
 export function HeaderConfigurationProvider ({children}: HeaderConfigurationProviderProps) {
 
-  const [modalSettingOpen, setModalSettingOpen] = useState<boolean>(false)
+  const [modalSettingOpen, setModalSettingOpen] = useState<boolean>(true)
   const [imageBackroud, setImageBackgroud] = useState<ImageSourcePropType>(bgBrasil)
   const [text, setText] = useState<string>()
   const [headerTitle, setHeaderTitle] = useState<string>()

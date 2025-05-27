@@ -47,7 +47,7 @@ const iconAreaData: iconAreaDataType = [
     id: 2,
     urlIcon: iconExercito,
     bgImage: bgExercito,
-    text: 'Orgulho em fazer parte do Éxercito',
+    text: 'Orgulho em fazer parte do Exército',
     title: 'Exercito',
     logoImage: logoExercito,
   },
@@ -106,9 +106,9 @@ export default function HeaderConfiguration() {
             <View style={settingTheme.wrapperPressableArea}>
               <Text style={settingTheme.info}>{text || 'Brasil'}</Text>
 
-              <Pressable onPress={showSettingsModal}>
+              {/*<Pressable onPress={showSettingsModal}>
                 <AntDesign name="close" style={settingTheme.icon}/>
-              </Pressable>
+              </Pressable>*/}
             </View>
 
             <View style={settingTheme.wrapperArea}>
