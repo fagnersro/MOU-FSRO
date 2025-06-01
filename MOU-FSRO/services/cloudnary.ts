@@ -12,7 +12,7 @@ export const cloudinaryVideos: VideoItem[] =[
   {
     id: 1,
     title: 'Atenção',
-    description: 'Ao toque de "Atênção", o militar que estava à vontade em formatura retorna à posição de descansar.',
+    description: 'Ao toque de “atenção”, o militar que estava à vontade em formatura retorna à posição de “descansar”.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747186987/iwoyb4pbxgghxezlvllx.mp4',
     thumbnail: require('assets/images/png/IMG_0086.png')
   },
@@ -33,7 +33,7 @@ export const cloudinaryVideos: VideoItem[] =[
   {
     id: 4,
     title: 'Direita volver',
-    description: 'Ao toque de “direita volver”, o militar gira o pé direito em 90°, junta a perna esquerda à direita e por fim fica em posição de “sentido',
+    description: 'Ao toque de “direita volver”, o militar gira o pé direito em 90°, junta a perna esquerda à direita e por fim fica em posição de “sentido”.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279700/IMG_0089_toukxi.mp4',
     thumbnail: require('assets/images/png/IMG_0088.png')
   },
@@ -151,17 +151,17 @@ export const cloudinaryVideos: VideoItem[] =[
   },
   {
     id: 21,
-    title: 'Apresentar armas',
-    description: 'Ao toque de “apresentar armas”, o militar faz o movimento como se fosse em 4 tempos: 1) tira o armamento do ombro; 2) cruza o armamento em frente ao peito; 3) puxa o armamento para baixo (ao lado do corpo); 4) segura o armamento na vertical com o braço esquerdo acima e a mão direita apenas apoiando, abaixo.',
-    url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279677/IMG_5371_aerec2.mp4',
-    thumbnail: require('assets/images/png/IMG_5365.png')
-  },
-  {
-    id: 22,
     title: 'Ombro armas',
     description: 'Ao toque de “ombro armas”, o militar faz o movimento como se fosse em 4 tempos: 1) puxa o armamento para cima (ao lado do corpo); 2) cruza o armamento em frente ao peito; 3) coloca o armamento no ombro; 4) fica em “sentido”.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279674/IMG_5372_xpasmr.mp4',
     thumbnail: require('assets/images/png/IMG_5364.png')
+  },
+  {
+    id: 22,
+    title: 'Apresentar armas',
+    description: 'Ao toque de “apresentar armas”, o militar faz o movimento como se fosse em 4 tempos: 1) tira o armamento do ombro; 2) cruza o armamento em frente ao peito; 3) puxa o armamento para baixo (ao lado do corpo); 4) segura o armamento na vertical com o braço esquerdo acima e a mão direita apenas apoiando, abaixo.',
+    url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279677/IMG_5371_aerec2.mp4',
+    thumbnail: require('assets/images/png/IMG_5365.png')
   },
   {
     id: 23,
@@ -180,7 +180,7 @@ export const cloudinaryVideos: VideoItem[] =[
   {
     id: 25,
     title: 'Armar baioneta',
-    description: 'Ao toque de "armar baioneta", o militar faz o movimento como se fosse em 3 tempos: 1) puxa a baioneta com a mão esquerda; 2) posiciona a baioneta no fuzil; 3) volta a segurar o armamento na posição inicial.',
+    description: 'Ao toque de “armar baioneta”, o militar faz o movimento como se fosse em 3 tempos: 1) puxa a baioneta com a mão esquerda; 2) posiciona a baioneta no fuzil; 3) volta a segurar o armamento na posição inicial.',
     url: 'https://res.cloudinary.com/dchoxpm0n/video/upload/v1747279675/IMG_5376_j6wwvc.mp4',
     thumbnail: require('assets/images/png/IMG_5376.png')
   },

@@ -182,17 +182,12 @@ const containerPlayMovie = StyleSheet.create({
     alignItems: 'center',
   },
   wrapperContent: {
-    //borderWidth: 2,
-    //borderColor: '#fff',
-
     flexDirection: 'column',
     alignContent: 'center',
     justifyContent: 'space-between',
-
-    
     padding: 20,
     width: windowWidth,
-    height: windowHeight-150,
+    height: windowHeight,
   },
   wrapperContentPressable: {
     flexDirection: 'row',
@@ -200,17 +195,10 @@ const containerPlayMovie = StyleSheet.create({
     gap: 3,
   },
   contentText: {
-    //borderWidth: 2,
-    //borderColor: '#fff',
-    height: 80,
+    height: 'auto',
   },
   contentMovie: {
-    //borderWidth: 2,
-    //borderColor: 'red',
-
     height: 550,
-    //overflow: 'hidden',
-    //margin: 'auto',
   },
   containerPlayMovie: {
     width: 300,
@@ -226,6 +214,9 @@ const containerPlayMovie = StyleSheet.create({
     color: '#fff',
   },
   textMovie: {
+    width: 'auto',
+    height: 'auto',
+    textAlign: 'center',
     fontSize: 15,
     color: '#fff',
   }
